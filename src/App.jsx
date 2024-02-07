@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Task } from "./components/Task";
 
-import styles from "./App.modules.css";
+import styles from "./App.module.css";
 
 export function App() {
   const inputRef = useRef(null);
@@ -11,13 +11,29 @@ export function App() {
     const newTask = {
       id: tasks.length + 1,
       title: inputRef.current.value,
-      isCompleted: true,
+      isCompleted: false,
     };
 
     setTasks([...tasks, newTask]);
 
     inputRef.current.value = "";
   }
+
+    function handleCompleteTask(id){
+      const taskIndex = tasks.findIndex(item => item.id === id);
+
+      if(taskIndex === -1){
+        return;
+      }
+
+      const newTasks = [...tasks]
+
+      newTasks[taskIndex].isCompleted = true
+
+      console.log(setTasks(newTasks))
+
+      
+    }
 
   return (
     <main className={styles.container}>
@@ -35,7 +51,7 @@ export function App() {
       </div>
       <div className={styles.tasks}>
         {tasks.map((item) => (
-          <Task key={item.id} task={item} />
+          <Task key={item.id} task={item} handleCompleteTask={handleCompleteTask} />
         ))}
         {!tasks.length && <p>Nenhuma Tarefa ainda ✍🧾</p>}
       </div>
