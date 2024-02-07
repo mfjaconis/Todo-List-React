@@ -1,4 +1,6 @@
-const data = [
+import { Task } from "./components/Task";
+
+const tasks = [
   {
     id: 1,
     title: "Meu primeiro todo",
@@ -22,9 +24,10 @@ export function App() {
       <h1> Todo List</h1>
       <input type="text" />
       <button>Adicionar</button>
-      { data.map(item => (
-        <p key={item.id}>{item.id } - {item.title } </p>
-      )) }
+      {tasks.map((item) => (
+        <Task key={item.id} task={item} />
+      ))}
+      {!tasks.length && <p>Nenhuma Tarefa ainda ✍🧾</p>}
     </main>
   );
 }
