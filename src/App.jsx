@@ -19,21 +19,27 @@ export function App() {
     inputRef.current.value = "";
   }
 
-    function handleCompleteTask(id){
-      const taskIndex = tasks.findIndex(item => item.id === id);
+  function handleCompleteTask(id) {
+    const taskIndex = tasks.findIndex(item => item.id === id);
 
-      if(taskIndex === -1){
-        return;
-      }
-
-      const newTasks = [...tasks]
-
-      newTasks[taskIndex].isCompleted = true
-
-      console.log(setTasks(newTasks))
-
-      
+    if (taskIndex === -1) {
+      return;
     }
+
+    const newTasks = [...tasks]
+
+    newTasks[taskIndex].isCompleted = true
+
+    console.log(setTasks(newTasks))
+  }
+
+  function handleDeleteTask(id) {
+    const deleteTaskIndex = tasks.filter(item => item.id !== id).delete
+    setTasks(deleteTaskIndex);
+
+    console.log(deleteTaskIndex)
+  }
+
 
   return (
     <main className={styles.container}>
@@ -51,7 +57,7 @@ export function App() {
       </div>
       <div className={styles.tasks}>
         {tasks.map((item) => (
-          <Task key={item.id} task={item} handleCompleteTask={handleCompleteTask} />
+          <Task key={item.id} task={item} handleCompleteTask={handleCompleteTask} handleDeleteTask={handleDeleteTask} />
         ))}
         {!tasks.length && <p>Nenhuma Tarefa ainda ✍🧾</p>}
       </div>

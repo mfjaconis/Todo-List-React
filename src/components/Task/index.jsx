@@ -14,6 +14,10 @@ export function Task(props) {
       >
         {props.task.id} - {props.task.title} 
       </p>
+
+      <button onClick={() => props.handleDeleteTask(props.task.id)}>
+        Excluir
+      </button>
     
     </div>
   );
