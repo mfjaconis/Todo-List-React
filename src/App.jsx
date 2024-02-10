@@ -20,7 +20,7 @@ export function App() {
   }
 
   function handleCompleteTask(id) {
-    const taskIndex = tasks.findIndex(item => item.id === id);
+    const taskIndex = tasks.findIndex(task => task.id === id);
 
     if (taskIndex === -1) {
       return;
@@ -29,15 +29,11 @@ export function App() {
     const newTasks = [...tasks]
 
     newTasks[taskIndex].isCompleted = true
-
-    console.log(setTasks(newTasks))
   }
 
   function handleDeleteTask(id) {
-    const deleteTaskIndex = tasks.filter(item => item.id !== id).delete
+    const deleteTaskIndex = tasks.filter(task => task.id !== id)
     setTasks(deleteTaskIndex);
-
-    console.log(deleteTaskIndex)
   }
 
 
