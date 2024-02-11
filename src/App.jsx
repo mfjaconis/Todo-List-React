@@ -18,17 +18,15 @@ export function App() {
 
     inputRef.current.value = "";
   }
-
+  // precisa verificar por qual motivo está ocorrendo a mudança somente depois de adicionar uma nova tarefa
   function handleCompleteTask(id) {
     const taskIndex = tasks.findIndex(task => task.id === id);
 
-    if (taskIndex === -1) {
-      return;
-    }
 
-    const newTasks = [...tasks]
-
+    const newTasks = [...tasks] 
     newTasks[taskIndex].isCompleted = true
+
+    setTasks(newTasks)
   }
 
   function handleDeleteTask(id) {
@@ -53,7 +51,7 @@ export function App() {
       </div>
       <div className={styles.tasks}>
         {tasks.map((item) => (
-          <Task key={item.id} task={item} handleCompleteTask={handleCompleteTask} handleDeleteTask={handleDeleteTask} />
+          <Task handleCompleteTask={handleCompleteTask} key={item.id} task={item} handleDeleteTask={handleDeleteTask} />
         ))}
         {!tasks.length && <p>Nenhuma Tarefa ainda ✍🧾</p>}
       </div>

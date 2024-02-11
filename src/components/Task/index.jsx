@@ -5,7 +5,7 @@ export function Task(props) {
   return (
     <div className={styles.container}>
       {!props.task.isCompleted && (
-        <input  type="radio" onClick={() => props.handleCompleteTask(props.task.id)} className={styles.button}/>)
+        <input  type="radio" onClick={() => props.handleCompleteTask(props.task.id)}/>)
       }
       <p
         className={`${styles.title} ${
@@ -18,6 +18,7 @@ export function Task(props) {
       <button onClick={() => props.handleDeleteTask(props.task.id)}>
         Excluir
       </button>
+    
     
     </div>
   );
